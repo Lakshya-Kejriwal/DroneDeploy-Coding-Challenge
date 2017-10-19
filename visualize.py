@@ -100,7 +100,7 @@ for files in glob.glob("Images/*.JPG"):
     BC = util.cv2Distance(B , C)
     AC = util.cv2Distance(C , A)
     
-    	#Find the topleft vertex using three distances
+    #Find the topleft vertex using three distances
     if(AB>BC and AB>AC):
         top = C
         bottom = A
@@ -153,9 +153,9 @@ for files in glob.glob("Images/*.JPG"):
     z=[]
     
     for point in QR_world_coordinates:
-        	x.append(point[0])
-        	y.append(point[1])
-        	z.append(point[2])
+        x.append(point[0])
+        y.append(point[1])
+        z.append(point[2])
     
     #Matplot lib wants the 5th point to make a complete figure, so give back the starting point
     x.append(QR_world_coordinates[0][0])
