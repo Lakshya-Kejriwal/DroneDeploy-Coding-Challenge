@@ -49,7 +49,7 @@ for files in glob.glob("Images/*.JPG"):
     #Apply canny edge detection to find edges in the image
     edges = cv2.Canny(image_gray, 100, 200, 3)
 	
-	#Find square contours in image
+    #Find square contours in image
     image_gray , contours, hierarchy = cv2.findContours(edges, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
     #Start processing the contour data
@@ -72,17 +72,16 @@ for files in glob.glob("Images/*.JPG"):
     		
             if c == 5:
                 if mark == 0:
-    				A = contour
+    			A = contour
                 #A has been found assign next contour to B
                 elif mark == 1:
-    				B = contour
+    			B = contour
                 #A and B have been found assign contour to C
                 elif mark == 2:
-    				C = contour
-    		   #Track which of A,B,C have been found
+    			C = contour
+    		#Track which of A,B,C have been found
                 mark = mark+1
 	
-	#Link all the contour points into a array
     all_contours = np.concatenate((contours[A],contours[B],contours[C]))
 	
     #Find approximated polygon of 3 square contours
@@ -122,7 +121,7 @@ for files in glob.glob("Images/*.JPG"):
     if perpendicular > 0:
         bottom, right = right, bottom
     	     
-    	#Given 3 alignment marker vertices find 4th vertex point of the QR code
+    #Given 3 alignment marker vertices find 4th vertex point of the QR code
     bottom_right_x = bottom[0] + right[0] - top[0]
     bottom_right_y = bottom[1] + right[1] - top[1]
     bottom_right = [bottom_right_x, bottom_right_y]
@@ -140,7 +139,7 @@ for files in glob.glob("Images/*.JPG"):
     	
     rotation, _ = cv2.Rodrigues(rotation)
     	
-    	#Change rotation and translation from camera coordinate to world coordinate
+    #Change rotation and translation from camera coordinate to world coordinate
     rotation = rotation.transpose()
     translation = -np.dot(rotation, translation)
     
